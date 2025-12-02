@@ -1,0 +1,39 @@
+## ============================================================================
+## ASP.NET Core MVC (Legacy) - Professional Gitignore
+## ============================================================================
+
+# --- Build Results ---
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# --- Web Specific ---
+wwwroot/lib/
+wwwroot/dist/
+# Keep standard wwwroot files but ignore generated ones if any
+bundleconfig.json.bindings
+
+# --- Visual Studio ---
+.vs/
+.vscode/
+*.user
+*.suo
+*.pdb
+
+# --- Configuration ---
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+secrets.json
+web.config
+
+# --- Logs ---
+logs/
+*.log
+
+# --- OS Generated ---
+.DS_Store
+Thumbs.db

@@ -1,0 +1,171 @@
+@model Firmeza.Web.Models.PaginatedList<Firmeza.Web.Models.Entities.Product>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="card shadow-sm border-0 p-4 mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+
+        <!-- Título -->
+        <div>
+            <h1 class="h3 fw-bold text-primary mb-1">
+                <i class="fas fa-boxes me-2 text-primary"></i> Productos
+            </h1>
+            <p class="text-muted m-0">Gestiona el inventario de tu ferretería.</p>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex flex-wrap gap-2">
+
+            <!-- Excel Upload -->
+            <form asp-controller="Excel" asp-action="Upload" method="post"
+                  enctype="multipart/form-data" id="excelForm">
+                <input type="file" name="file" id="excelInput" class="d-none" accept=".xlsx,.xls" />
+                <button type="button" class="btn btn-outline-primary" onclick="excelInput.click()">
+                    <i class="fas fa-file-arrow-up me-1"></i> Importar
+                </button>
+            </form>
+
+            <!-- Exportaciones -->
+            <div class="btn-group">
+                <a asp-controller="Excel" asp-action="ExportProducts" class="btn btn-outline-secondary">
+                    <i class="fas fa-file-excel text-success me-1"></i> Excel
+                </a>
+                <a asp-controller="Reports" asp-action="ExportProductsPdf" class="btn btn-outline-secondary">
+                    <i class="fas fa-file-pdf text-danger me-1"></i> PDF
+                </a>
+            </div>
+
+            <!-- Crear -->
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-1"></i> Nuevo Producto
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- TABLA -->
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="bg-light">
+                    <tr class="text-muted small">
+                        <th class="ps-4">Producto</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoría</th>
+                        <th>Fecha Registro</th>
+                        <th class="text-end pe-4">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (!Model.Items.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <i class="fas fa-box-open fa-3x text-muted opacity-25 mb-3"></i>
+                                <p class="text-muted">No hay productos registrados.</p>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td class="fw-semibold ps-4">@item.Name</td>
+
+                                <td>@item.Price.ToString("C", new System.Globalization.CultureInfo("es-CO"))</td>
+
+                                <td>
+                                    <span class="badge rounded-pill px-3 fw-semibold
+                                        @(item.Quantity > 10 
+                                            ? "bg-success bg-opacity-10 text-success" 
+                                            : "bg-danger bg-opacity-10 text-danger")">
+                                        @item.Quantity
+                                    </span>
+                                </td>
+
+                                <td>@item.Category</td>
+
+                                <td class="text-muted small">@item.CreatedAt.ToString("dd/MM/yyyy")</td>
+
+                                <td class="text-end pe-4">
+                                    <div class="btn-group">
+
+                                        <a asp-action="Edit" asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-primary" title="Editar">
+                                            <i class="fas fa-pen-to-square"></i>
+                                        </a>
+
+                                        <a asp-action="Details" asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-secondary" title="Detalles">
+                                            <i class="fas fa-circle-info"></i>
+                                        </a>
+
+                                        <a asp-action="Delete" asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-danger" title="Eliminar">
+                                            <i class="fas fa-trash-can"></i>
+                                        </a>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PAGINACIÓN -->
+    @if (Model.TotalPages > 1)
+    {
+        <div class="card-footer bg-light">
+            <nav aria-label="Paginación de productos">
+                <ul class="pagination pagination-sm justify-content-center mb-0">
+
+                    <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)">
+                            <i class="fas fa-chevron-left me-1"></i> Anterior
+                        </a>
+                    </li>
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                            <a class="page-link" asp-action="Index" asp-route-pageNumber="@i">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                        <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">
+                            Siguiente <i class="fas fa-chevron-right ms-1"></i>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="text-center mt-2">
+                <small class="text-muted">
+                    Página @Model.PageIndex de @Model.TotalPages (@Model.TotalCount productos)
+                </small>
+            </div>
+
+        </div>
+    }
+</div>
+
+@section Scripts {
+<script>
+    excelInput.addEventListener("change", () => {
+        if (excelInput.files.length > 0) excelForm.submit();
+    });
+</script>
+}

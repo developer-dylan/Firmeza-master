@@ -1,0 +1,36 @@
+
+/* Firmezaa — Professional theme */
+:root{
+  --brand:#0d6efd;
+  --muted:#6c757d;
+  --bg:#f8f9fb;
+  --card:#ffffff;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:#222;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.navbar-brand strong{letter-spacing:0.2px}
+.card{border:0;border-radius:var(--radius);box-shadow:0 6px 20px rgba(20,30,50,0.06);background:var(--card)}
+header{background:transparent}
+h1,h2,h3,h4{color:#111;margin-top:0}
+.container{max-width:1100px}
+.btn-primary{background:var(--brand);border-color:var(--brand);box-shadow:none}
+.list-unstyled a{display:block;padding:6px 0;color:var(--muted)}
+.bg-primary{background:linear-gradient(90deg,var(--brand),#0b5ed7) !important}
+footer{background:transparent}
+.form-control{border-radius:8px;padding:.9rem 1rem;border:1px solid #e6e9ef}
+.table thead th{border-bottom:2px solid #eef2f7}
+.badge-soft{background:#eef4ff;color:var(--brand);padding:.35rem .6rem;border-radius:999px;font-weight:600}
+/* Responsive tweaks */
+@media (max-width: 768px){aside{display:none} .container{padding:0 1rem}}
+
+
+
+/* Enhancements for forms, tables, badges, alerts */
+.form-control:focus{box-shadow:0 0 0 .15rem rgba(13,110,253,.12);border-color:var(--bs-primary);}
+.table{background:white;border-radius:8px;overflow:hidden}
+.btn-primary{border-radius:8px}
+.card{border-radius:12px}
+.alert{border-radius:8px}
