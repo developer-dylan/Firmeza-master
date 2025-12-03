@@ -1,6 +1,7 @@
 using AutoMapper;
 using Firmeza.Api.DTOs;
 using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 
 namespace Firmeza.Api.Mappings;
 
@@ -13,7 +14,7 @@ public class MappingProfile : Profile
         CreateMap<CreateProductDto, Product>();
 
         // User/Client mappings
-        CreateMap<User, ClientDto>()
+        CreateMap<AppUser, ClientDto>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
 
         // Sale mappings

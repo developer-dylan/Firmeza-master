@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 namespace Firmeza.Web.Data;
 
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models.Entities;
 
-public class AppDbContext : IdentityDbContext<User>
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -36,14 +37,14 @@ public class AppDbContext : IdentityDbContext<User>
             .Property(sd => sd.UnitPrice)
             .HasPrecision(18, 2);
 
-        modelBuilder.Entity<User>().ToTable("users");
+        modelBuilder.Entity<AppUser>().ToTable("users");
         modelBuilder.Entity<Product>().ToTable("products");
         modelBuilder.Entity<Sale>().ToTable("sales");
         modelBuilder.Entity<SaleDetail>().ToTable("sale_details");
 
 
 
-        modelBuilder.Entity<User>().ToTable("users");
+        modelBuilder.Entity<AppUser>().ToTable("users");
         modelBuilder.Entity<IdentityRole>().ToTable("roles");
         modelBuilder.Entity<IdentityUserRole<string>>().ToTable("user_roles");
         modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("user_claims");

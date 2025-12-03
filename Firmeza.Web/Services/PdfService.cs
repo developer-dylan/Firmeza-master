@@ -1,5 +1,6 @@
 using Firmeza.Web.Interfaces;
 using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -81,7 +82,7 @@ public class PdfService : IPdfService
         }).GeneratePdf();
     }
 
-    public byte[] GenerateClientListPdf(IEnumerable<User> clients)
+    public byte[] GenerateClientListPdf(IEnumerable<AppUser> clients)
     {
         return Document.Create(container =>
         {

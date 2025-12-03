@@ -1,7 +1,7 @@
 using Firmeza.Web.Data;
 using Firmeza.Web.Interfaces;
 using Firmeza.Web.Repositories;
-using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +12,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // ------------------------------------------------------
-// 🔧 FORZAR PUERTOS PARA LA API (Kestrel)
+// FORZAR PUERTOS PARA LA API (Kestrel)
 // ------------------------------------------------------
 builder.WebHost.ConfigureKestrel(options =>
 {
@@ -24,7 +24,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 
 // ------------------------------------------------------
-// 🟦 CORS
+// CORS
 // ------------------------------------------------------
 builder.Services.AddCors(options =>
 {
@@ -41,7 +41,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // ------------------------------------------------------
-// 🟩 SWAGGER + JWT
+// SWAGGER + JWT
 // ------------------------------------------------------
 builder.Services.AddSwaggerGen(c =>
 {
@@ -71,15 +71,15 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // ------------------------------------------------------
-// 🟧 DATABASE
+// DATABASE
 // ------------------------------------------------------
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // ------------------------------------------------------
-// 🟨 IDENTITY
+// IDENTITY
 // ------------------------------------------------------
-builder.Services.AddIdentity<User, IdentityRole>(options =>
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
@@ -89,7 +89,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 .AddDefaultTokenProviders();
 
 // ------------------------------------------------------
-// 🟥 JWT AUTH
+// JWT AUTH
 // ------------------------------------------------------
 var jwtKey = builder.Configuration["Jwt:Key"]
     ?? throw new InvalidOperationException("Jwt:Key missing");
@@ -118,7 +118,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 // ------------------------------------------------------
-// 🟦 AutoMapper + Repositorios
+// AutoMapper + Repositorios
 // ------------------------------------------------------
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -132,7 +132,7 @@ builder.Services.AddScoped<Firmeza.Api.Services.IEmailService, Firmeza.Api.Servi
 var app = builder.Build();
 
 // ------------------------------------------------------
-// 🟩 Middleware
+// Middleware
 // ------------------------------------------------------
 if (app.Environment.IsDevelopment())
 {
@@ -149,7 +149,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 // ------------------------------------------------------
-// 🟦 Crear roles si no existen
+// Crear roles si no existen
 // ------------------------------------------------------
 using (var scope = app.Services.CreateScope())
 {
@@ -158,8 +158,8 @@ using (var scope = app.Services.CreateScope())
     if (!await roleManager.RoleExistsAsync("Admin"))
         await roleManager.CreateAsync(new IdentityRole("Admin"));
 
-    if (!await roleManager.RoleExistsAsync("Cliente"))
-        await roleManager.CreateAsync(new IdentityRole("Cliente"));
+    if (!await roleManager.RoleExistsAsync("Client"))
+        await roleManager.CreateAsync(new IdentityRole("Client"));
 }
 
 app.Run();

@@ -1,17 +1,18 @@
 using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 
 namespace Firmeza.Web.Interfaces
 {
     public interface IUserRepository
     {
-        Task<List<User>> GetAllAsync();
-        Task<User?> GetByIdAsync(string id);
-        Task AddAsync(User user);
-        Task UpdateAsync(User user);
-        Task DeleteAsync(User user);
+        Task<List<AppUser>> GetAllAsync();
+        Task<AppUser?> GetByIdAsync(string id);
+        Task AddAsync(AppUser user);
+        Task UpdateAsync(AppUser user);
+        Task DeleteAsync(AppUser user);
         Task<bool> ExistsAsync(string id);
-        Task<User?> GetByNameAsync(string name);
-        Task<User?> GetByEmailAsync(string email);
-        Task<IQueryable<User>> GetQueryable();
+        Task<AppUser?> GetByNameAsync(string name);
+        Task<AppUser?> GetByEmailAsync(string email);
+        Task<IQueryable<AppUser>> GetQueryable();
     }
 }

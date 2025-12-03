@@ -1,4 +1,5 @@
-@model Firmeza.Web.Models.PaginatedList<Firmeza.Web.Models.Entities.User>
+@using Firmeza.Identity
+@model Firmeza.Web.Models.PaginatedList<AppUser>
 
 @{
     ViewData["Title"] = "Usuarios";
@@ -66,7 +67,7 @@
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold
                                                         d-flex align-items-center justify-content-center"
-                                                style="width: 38px; height: 38px; font-size: 0.9rem;">
+                                                 style="width: 38px; height: 38px; font-size: 0.9rem;">
                                                 @item.FullName?.Substring(0, 1).ToUpper()
                                             </div>
                                             @item.FullName

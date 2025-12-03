@@ -1,13 +1,13 @@
+using Microsoft.AspNetCore.Identity;
+using Firmeza.Identity;
 namespace Firmeza.Web.Data
 {
-    using Microsoft.AspNetCore.Identity;
-    using Models.Entities;
-
+    
     public static class SeedData
     {
        public static async Task InitializeAsync(IServiceProvider serviceProvider)
         {
-            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var logger = serviceProvider.GetService<ILoggerFactory>()?.CreateLogger("SeedData");
 
@@ -30,7 +30,7 @@ namespace Firmeza.Web.Data
             var existingAdmin = await userManager.FindByEmailAsync(adminEmail);
             if (existingAdmin == null)
             {
-                var adminUser = new User
+                var adminUser = new AppUser
                 {
                     UserName = adminEmail,
                     Email = adminEmail,

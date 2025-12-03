@@ -2,8 +2,9 @@ using Firmeza.Web.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using Firmeza.Web.Models.Entities;
+using Firmeza.Identity; // ← AppUser
 using Firmeza.Web.ViewModels.Users;
+
 namespace Firmeza.Web.Controllers;
 
 [Authorize(Policy = "AdminOnly")]
@@ -51,7 +52,7 @@ public class UsersController : Controller
         if (!ModelState.IsValid)
             return View(model);
 
-        var user = new User
+        var user = new AppUser
         {
             UserName = model.UserName,
             Email = model.Email,
@@ -89,9 +90,9 @@ public class UsersController : Controller
             Id = user.Id,
             FullName = user.FullName,
             DocumentNumber = user.DocumentNumber,
-            Email = user.Email?.Trim()!,
+            Email = user.Email?.Trim() ?? "",
             Phone = user.Phone,
-            UserName = user.UserName?.Trim()!,
+            UserName = user.UserName?.Trim() ?? "",
             RegisterDate = user.RegisterDate
         };
 
@@ -113,7 +114,7 @@ public class UsersController : Controller
         if (user == null)
             return NotFound();
 
-        // Map ViewModel → User Entity
+        // Map ViewModel → AppUser Entity
         user.FullName = model.FullName;
         user.DocumentNumber = model.DocumentNumber;
         user.Email = model.Email;

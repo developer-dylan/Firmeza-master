@@ -12,13 +12,13 @@ public class SaleDetail
     [ForeignKey("Sale")]
     public int SaleId { get; set; }
 
-    public Sale Sale { get; set; }
+    public Sale? Sale { get; set; }
 
     [Required(ErrorMessage = "Product reference is required.")]
     [ForeignKey("Product")]
     public int ProductId { get; set; }
 
-    public Product Product { get; set; }
+    public Product? Product { get; set; }
 
     [Required(ErrorMessage = "Quantity is required.")]
     [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1.")]

@@ -1,5 +1,6 @@
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using MimeKit;
 using MimeKit.Text;
 
@@ -23,7 +24,7 @@ public class EmailService : IEmailService
     public async Task SendEmailAsync(string to, string subject, string body)
     {
         var smtpHost = _configuration["Smtp:Host"];
-        var smtpPort = int.Parse(_configuration["Smtp:Port"]);
+        int smtpPort = _configuration.GetValue<int>("Smtp:Port");
         var smtpUsername = _configuration["Smtp:Username"];
         var smtpPassword = _configuration["Smtp:Password"];
         var fromName = _configuration["Smtp:FromName"] ?? "Firmeza";

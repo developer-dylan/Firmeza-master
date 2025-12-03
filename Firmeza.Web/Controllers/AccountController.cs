@@ -1,17 +1,18 @@
-namespace Firmeza.Web.Controllers;
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Models;
-using Models.Entities;
+using Firmeza.Identity;
+using Firmeza.Web.Models;
+
+namespace Firmeza.Web.Controllers;
+
 
 // Controller for handling user authentication (Login/Logout)
 public class AccountController : Controller
 {
 
-    private readonly SignInManager<User> _signInManager;
+    private readonly SignInManager<AppUser> _signInManager;
 
-    public AccountController(SignInManager<User> signInManager)
+    public AccountController(SignInManager<AppUser> signInManager)
     {
         _signInManager = signInManager;
     }

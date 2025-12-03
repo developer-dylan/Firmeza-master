@@ -1,5 +1,6 @@
 using Firmeza.Web.Interfaces;
 using Firmeza.Web.Models;
+using Firmeza.Identity;
 using Firmeza.Web.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 
@@ -9,12 +10,12 @@ namespace Firmeza.Web.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _repo;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public UserService(
             IUserRepository repo,
-            UserManager<User> userManager,
+            UserManager<AppUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             _repo = repo;
@@ -22,13 +23,13 @@ namespace Firmeza.Web.Services
             _roleManager = roleManager;
         }
 
-        public Task<List<User>> GetAllAsync() => _repo.GetAllAsync();
+        public Task<List<AppUser>> GetAllAsync() => _repo.GetAllAsync();
 
-        public Task<User?> GetByIdAsync(string id) => _repo.GetByIdAsync(id);
+        public Task<AppUser?> GetByIdAsync(string id) => _repo.GetByIdAsync(id);
 
-        public Task CreateAsync(User user) => _repo.AddAsync(user);
+        public Task CreateAsync(AppUser user) => _repo.AddAsync(user);
 
-        public Task UpdateAsync(User user) => _repo.UpdateAsync(user);
+        public Task UpdateAsync(AppUser user) => _repo.UpdateAsync(user);
 
         public async Task DeleteAsync(string id)
         {
@@ -40,7 +41,7 @@ namespace Firmeza.Web.Services
         public Task<bool> ExistsAsync(string id) => _repo.ExistsAsync(id);
 
         // Creates a new user with password and assigns a role
-        public async Task CreateWithPasswordAsync(User user, string password, string role)
+        public async Task CreateWithPasswordAsync(AppUser user, string password, string role)
         {
             // Crear usuario con Identity
             var result = await _userManager.CreateAsync(user, password);
@@ -57,10 +58,10 @@ namespace Firmeza.Web.Services
         }
 
         // Retrieves paginated users
-        public async Task<PaginatedList<User>> GetPagedAsync(int pageNumber, int pageSize)
+        public async Task<PaginatedList<AppUser>> GetPagedAsync(int pageNumber, int pageSize)
         {
             var query = await _repo.GetQueryable();
-            return await PaginatedList<User>.CreateAsync(query, pageNumber, pageSize);
+            return await PaginatedList<AppUser>.CreateAsync(query, pageNumber, pageSize);
         }
     }
 }

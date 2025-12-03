@@ -1,6 +1,7 @@
 using Firmeza.Web.DTOs;
 using Firmeza.Web.Interfaces;
 using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 using OfficeOpenXml;
 
 namespace Firmeza.Web.Services;
@@ -87,7 +88,7 @@ public class ExcelService : IExcelService
         return package.GetAsByteArray();
     }
 
-    public byte[] ExportClients(IEnumerable<User> clients)
+    public byte[] ExportClients(IEnumerable<AppUser> clients)
     {
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         using var package = new ExcelPackage();

@@ -1,6 +1,5 @@
 using Firmeza.Web.Models.Entities;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+using Firmeza.Identity;
 
 namespace Firmeza.Web.Interfaces
 {
@@ -8,7 +7,7 @@ namespace Firmeza.Web.Interfaces
     {
         Task<bool> ProcessExcelAsync(IFormFile file);
         byte[] ExportProducts(IEnumerable<Product> products);
-        byte[] ExportClients(IEnumerable<User> clients);
+        byte[] ExportClients(IEnumerable<AppUser> clients);
         byte[] ExportSales(IEnumerable<Sale> sales);
     }
 }

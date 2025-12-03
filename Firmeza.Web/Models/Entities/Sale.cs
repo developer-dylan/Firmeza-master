@@ -1,7 +1,8 @@
-namespace Firmeza.Web.Models.Entities;
-
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Firmeza.Identity;
+
+namespace Firmeza.Web.Models.Entities;
 
 public class Sale
 {
@@ -23,7 +24,7 @@ public class Sale
 
     [ForeignKey("User")]
     public string? UserId { get; set; }
-    public User? User { get; set; }
+    public AppUser? User { get; set; }
 
     public ICollection<SaleDetail>? SaleDetails { get; set; }  
 }

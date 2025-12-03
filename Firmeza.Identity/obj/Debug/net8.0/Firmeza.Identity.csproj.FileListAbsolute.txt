@@ -1,0 +1,13 @@
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.csproj.AssemblyReference.cache
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.GeneratedMSBuildEditorConfig.editorconfig
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.AssemblyInfoInputs.cache
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.AssemblyInfo.cs
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.csproj.CoreCompileInputs.cache
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.sourcelink.json
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/bin/Debug/net8.0/Firmeza.Identity.deps.json
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/bin/Debug/net8.0/Firmeza.Identity.dll
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/bin/Debug/net8.0/Firmeza.Identity.pdb
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.dll
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/refint/Firmeza.Identity.dll
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/Firmeza.Identity.pdb
+/home/fermotta/Música/Firmeza-master-final-enhanced/Firmeza-master/Firmeza.Identity/obj/Debug/net8.0/ref/Firmeza.Identity.dll

@@ -1,6 +1,6 @@
 using Firmeza.Web.Data;
 using Firmeza.Web.Interfaces;
-using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 using Firmeza.Web.Repositories;
 using Firmeza.Web.Services;
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-builder.Services.AddDefaultIdentity<User>(options =>
+builder.Services.AddDefaultIdentity<AppUser>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
         options.Password.RequireDigit = true;
@@ -25,7 +25,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequiredLength = 6;
     })
-    .AddRoles<IdentityRole>() // Enable Roles
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.ConfigureApplicationCookie(options =>

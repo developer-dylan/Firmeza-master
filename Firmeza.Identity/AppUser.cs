@@ -1,9 +1,10 @@
+using System;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace Firmeza.Web.Models.Entities
+namespace Firmeza.Identity
 {
-    public class User : IdentityUser
+    public class AppUser : IdentityUser
     {
         [Required]
         public string FullName { get; set; } = string.Empty;

@@ -1,5 +1,5 @@
 using Firmeza.Api.DTOs;
-using Firmeza.Web.Models.Entities;
+using Firmeza.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -13,13 +13,13 @@ namespace Firmeza.Api.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly UserManager<User> _userManager;
-    private readonly SignInManager<User> _signInManager;
+    private readonly UserManager<AppUser> _userManager;
+    private readonly SignInManager<AppUser> _signInManager;
     private readonly IConfiguration _configuration;
 
     public AuthController(
-        UserManager<User> userManager,
-        SignInManager<User> signInManager,
+        UserManager<AppUser> userManager,
+        SignInManager<AppUser> signInManager,
         IConfiguration configuration)
     {
         _userManager = userManager;
@@ -33,7 +33,7 @@ public class AuthController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var user = new User
+        var user = new AppUser
         {
             UserName = model.Email,
             Email = model.Email,
@@ -49,7 +49,7 @@ public class AuthController : ControllerBase
             return BadRequest(result.Errors);
 
         // Assign "Cliente" role
-        await _userManager.AddToRoleAsync(user, "Cliente");
+        await _userManager.AddToRoleAsync(user, "Client");
 
         return Ok(new { message = "User registered successfully" });
     }
@@ -86,13 +86,13 @@ public class AuthController : ControllerBase
     }
 
 
-    private async Task<string> GenerateJwtToken(User user)
+    private async Task<string> GenerateJwtToken(AppUser user)
     {
         var roles = await _userManager.GetRolesAsync(user);
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id),
-            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Email, user.Email!),
             new Claim(ClaimTypes.Name, user.FullName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };

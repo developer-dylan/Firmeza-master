@@ -118,8 +118,9 @@ public class SaleController : Controller
 
 public class SaleViewModel
 {
-    public string UserId { get; set; }
-    public List<SaleItemViewModel> Items { get; set; }
+    public string? UserId { get; set; }
+
+    public required List<SaleItemViewModel> Items { get; set; } 
 }
 
 public class SaleItemViewModel

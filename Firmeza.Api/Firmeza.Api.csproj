@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Firmeza.Web\Firmeza.Web.csproj" />
+    <ProjectReference Include="..\Firmeza.Identity\Firmeza.Identity.csproj" />
   </ItemGroup>
 
 </Project>

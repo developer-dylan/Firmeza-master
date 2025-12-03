@@ -1,12 +1,11 @@
-namespace Firmeza.Web.Controllers;
-
-using Interfaces;
+using Firmeza.Web.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Firmeza.Web.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Firmeza.Web.Data;
+using Firmeza.Identity;
 
-[Microsoft.AspNetCore.Components.Route("[controller]/[action]")]
+namespace Firmeza.Web.Controllers;
+
 
 // Controller for Excel file import/export operations
 public class ExcelController : Controller
@@ -59,7 +58,7 @@ public class ExcelController : Controller
     [HttpGet]
     public async Task<IActionResult> ExportClients()
     {
-        var clients = await _context.Users.ToListAsync();
+        var clients = await _context.Users.ToListAsync();  // ← AHORA ES AppUser
         var fileContent = _excelService.ExportClients(clients);
         return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Clientes.xlsx");
     }
@@ -68,7 +67,11 @@ public class ExcelController : Controller
     [HttpGet]
     public async Task<IActionResult> ExportSales()
     {
-        var sales = await _context.Sales.Include(s => s.User).ToListAsync();
+        // Asegúrate que la propiedad Sale.User sea AppUser
+        var sales = await _context.Sales
+            .Include(s => s.User)
+            .ToListAsync();
+
         var fileContent = _excelService.ExportSales(sales);
         return File(fileContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Ventas.xlsx");
     }

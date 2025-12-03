@@ -1,8 +1,8 @@
-namespace Firmeza.Web.Services;
+using Firmeza.Web.Interfaces;
+using Firmeza.Web.Models;
+using Firmeza.Web.Models.Entities;
 
-using Interfaces;
-using Models;
-using Models.Entities;
+namespace Firmeza.Web.Services;
 
 // Service for managing product business logic
 public class ProductService : IProductService
