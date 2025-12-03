@@ -16,7 +16,7 @@
                 <div class="mb-4">
                     <label class="form-label fw-bold">Cliente</label>
                     <select id="UserId" name="UserId" class="form-select" asp-items="ViewBag.UserId">
-                        <option value="">-- Seleccionar Cliente --</option>
+                        <option value=""> Seleccionar Cliente </option>
                     </select>
                 </div>
 
@@ -25,7 +25,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <select id="productSelect" class="form-select">
-                            <option value="">-- Seleccionar Producto --</option>
+                            <option value=""> Seleccionar Producto </option>
                             @if (products != null)
                             {
                                 foreach (var p in products)
