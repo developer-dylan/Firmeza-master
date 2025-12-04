@@ -33,6 +33,7 @@ Firmeza.Api is the REST API component of the Firmeza solution. It exposes endpoi
 
 - Connection string: set `DefaultConnection` in `appsettings.json` or as an environment variable `ConnectionStrings__DefaultConnection`.
 - JWT settings: the API requires configuration under the `Jwt` section with at least:
+
   - `Jwt:Key` (symmetric signing key)
   - `Jwt:Issuer`
   - `Jwt:Audience`
@@ -40,14 +41,14 @@ Firmeza.Api is the REST API component of the Firmeza solution. It exposes endpoi
   Example (development):
 
   {
-    "ConnectionStrings": {
-      "DefaultConnection": "Host=localhost;Port=5432;Database=firmeza;Username=myuser;Password=mypass"
-    },
-    "Jwt": {
-      "Key": "your-very-strong-secret-key",
-      "Issuer": "Firmeza",
-      "Audience": "FirmezaClient"
-    }
+  "ConnectionStrings": {
+  "DefaultConnection": "Host=localhost;Port=5432;Database=firmeza;Username=myuser;Password=mypass"
+  },
+  "Jwt": {
+  "Key": "your-very-strong-secret-key",
+  "Issuer": "Firmeza",
+  "Audience": "FirmezaClient"
+  }
   }
 
 - Kestrel ports are configured in `Program.cs` to listen on `localhost:5000` (HTTP) and `localhost:7000` (HTTPS) by default.
@@ -62,6 +63,7 @@ On startup the API ensures the roles `Admin` and `Client` exist (see `Program.cs
 - To apply migrations from the `Firmeza.Api` project folder:
 
   - Install `dotnet-ef` if needed:
+
     - `dotnet tool install --global dotnet-ef`
 
   - Apply migrations:
@@ -120,5 +122,3 @@ If you want, I can also:
 
 - Add a `docker-compose.yml` to lift PostgreSQL + this API for local development.
 - Add a sample `appsettings.Development.json` template with recommended settings (without secrets).
-
-This README was generated with assistance.

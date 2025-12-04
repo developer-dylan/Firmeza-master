@@ -123,4 +123,3 @@ If you want, I can also:
 - Add a `docker-compose.yml` example that brings up PostgreSQL and the app for local development.
 - Add CI/CD or deployment instructions for cloud platforms (Azure, DigitalOcean, etc.).
 
-This README was generated with assistance.
