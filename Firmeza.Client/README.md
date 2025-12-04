@@ -38,7 +38,7 @@ Firmeza.Client is the frontend Single Page Application (SPA) for the Firmeza pro
 - API base URL is set in `src/services/api.js`. You can configure it via environment variables when building with Vite. Example environment files:
 
   - Create `.env` (or `.env.development`) with:
-    - `VITE_API_BASE_URL=http://localhost:5000` (adjust port/host accordingly)
+    - `VITE_API_BASE_URL=http://localhost:7000` (adjust port/host accordingly)
 
 - Vite exposes `import.meta.env.VITE_API_BASE_URL` to the client code.
 

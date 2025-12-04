@@ -51,7 +51,7 @@ Firmeza.Api is the REST API component of the Firmeza solution. It exposes endpoi
   }
   }
 
-- Kestrel ports are configured in `Program.cs` to listen on `localhost:5000` (HTTP) and `localhost:7000` (HTTPS) by default.
+- Kestrel ports are configured in `Program.cs` to listen on `localhost:7000` (HTTPS) by default.
 
 **Roles / Seed behavior**
 
@@ -78,14 +78,14 @@ Note: Migrations may be shared with `Firmeza.Web` depending on how the DbContext
   - `dotnet build Firmeza.Api.csproj`
 - Run the API:
   - `dotnet run --project Firmeza.Api.csproj`
-  - The Swagger UI is enabled in Development and is typically reachable at `https://localhost:7000/swagger` or `http://localhost:5000/swagger`.
+  - The Swagger UI is enabled in Development and is typically reachable at `https://localhost:7000/swagger`.
 
 **Run with Docker (basic example)**
 
 - Build image (from `Firmeza.Api` folder):
   - `docker build -t firmeza-api .`
 - Run container (pass connection string and JWT secrets via env vars):
-  - `docker run -e "ConnectionStrings__DefaultConnection=Host=host.docker.internal;Port=5432;Database=firmeza;Username=myuser;Password=mypass" -e "Jwt__Key=yourkey" -e "Jwt__Issuer=Firmeza" -e "Jwt__Audience=FirmezaClient" -p 5000:5000 -p 7000:7000 firmeza-api`
+  - `docker run -e "ConnectionStrings__DefaultConnection=Host=host.docker.internal;Port=5432;Database=firmeza;Username=myuser;Password=mypass" -e "Jwt__Key=yourkey" -e "Jwt__Issuer=Firmeza" -e "Jwt__Audience=FirmezaClient" -p 7000:7000 firmeza-api`
 
 Adjust networking options as needed for Linux (e.g. `--network host`) and avoid plaintext secrets for production.
 

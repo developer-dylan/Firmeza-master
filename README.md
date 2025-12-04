@@ -136,7 +136,7 @@ npm run build
 Use this as a starting point for local containerized development. It brings up PostgreSQL and the API. Adjust as needed and do not store secrets in the compose file for production.
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   postgres:
     image: postgres:15
@@ -145,7 +145,7 @@ services:
       POSTGRES_USER: firmeza_user
       POSTGRES_PASSWORD: firmeza_pass
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -155,14 +155,13 @@ services:
       dockerfile: Dockerfile
     environment:
       ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=firmeza;Username=firmeza_user;Password=firmeza_pass
-      Jwt__Key: 'replace-with-secure-key'
-      Jwt__Issuer: 'Firmeza'
-      Jwt__Audience: 'FirmezaClient'
+      Jwt__Key: "replace-with-secure-key"
+      Jwt__Issuer: "Firmeza"
+      Jwt__Audience: "FirmezaClient"
     depends_on:
       - postgres
     ports:
-      - '5000:5000'
-      - '7000:7000'
+      - "7000:7000"
 
 volumes:
   pgdata:
@@ -212,6 +211,7 @@ Next steps I can do for you (choose any):
 If you want one of those, tell me which and I will create it.
 
 This README was generated and tailored to this repository.
+
 # Firmeza Project
 
 Firmeza is a sales management system built with a .NET 8 Web API backend and a Vue 3 frontend. It features user authentication, a product catalog, a shopping cart, and automated email notifications.
@@ -231,12 +231,15 @@ Firmeza is a sales management system built with a .NET 8 Web API backend and a V
 ## Setup and Configuration
 
 ### 1. Database
+
 Ensure you have a PostgreSQL database running. Update the connection string in the API configuration file if necessary.
 
 ### 2. Email Configuration (SMTP)
+
 To enable email receipts, you must configure SMTP credentials in `Firmeza.Api/appsettings.json`.
 
 Example configuration structure:
+
 ```json
 "Smtp": {
   "Host": "smtp.gmail.com",
@@ -246,19 +249,22 @@ Example configuration structure:
   "FromName": "Firmeza Store"
 }
 ```
+
 Note: For Gmail, use an App Password.
 
 ## Running the Application
 
 ### Backend (API)
+
 1. Open a terminal in the `Firmeza.Api` directory.
 2. Run the following command:
    ```bash
    dotnet run
    ```
-3. The API will start on `http://localhost:5081`.
+3. The API will start on `http://localhost:7000`.
 
 ### Frontend (Client)
+
 1. Open a terminal in the `Firmeza.Client` directory.
 2. Install dependencies:
    ```bash
