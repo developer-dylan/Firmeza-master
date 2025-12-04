@@ -107,7 +107,7 @@ If you want, I can:
 - Add sample `.env.example` with recommended variables.
 - Add a small GitHub Actions workflow to build and publish the frontend assets.
 
-This README was generated with assistance.
+
 # Vue 3 + Vite
 
 This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
