@@ -86,7 +86,7 @@ dotnet build
 dotnet ef database update --project Firmeza.Web
 ```
 
-4. Run the API (Kestrel configured for ports `5000` and `7000` in `Program.cs`):
+4. Run the API (Kestrel configured for ports `7000` in `Program.cs`):
 
 ```bash
 dotnet run --project Firmeza.Api/Firmeza.Api.csproj
